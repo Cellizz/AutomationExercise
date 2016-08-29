@@ -1,4 +1,4 @@
-package com.herokuapp.automatizacion.AutomationExercise;
+package com.herokuapp.automatizacion.automationExercise;
 
 /**
  * Hello world!
