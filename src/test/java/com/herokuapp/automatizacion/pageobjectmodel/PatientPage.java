@@ -13,7 +13,7 @@ public class PatientPage {
 	}
 
 	public void addPatient(String id, String name, String lastName, String telephone, String idType,
-			boolean isPrepaid) {
+			boolean isPrepaid) throws InterruptedException {
 		if (name != null) {
 			driver.findElement(By.name("name")).clear();
 			driver.findElement(By.name("name")).sendKeys(name);
@@ -42,6 +42,8 @@ public class PatientPage {
 		if (isPrepaid)
 			driver.findElement(By.name("prepaid")).click();
 		driver.findElement(By.linkText("Guardar")).click();
+		
+		Thread.sleep(2000);
 	}
 
 	public void goHome() {

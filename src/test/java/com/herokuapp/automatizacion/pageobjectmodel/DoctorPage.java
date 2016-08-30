@@ -11,7 +11,7 @@ public class DoctorPage {
 		this.driver = driver;
 	}
 
-	public void addDoctor(String name, String lastName, String telephone, String typeId, String id) {
+	public void addDoctor(String name, String lastName, String telephone, String typeId, String id) throws InterruptedException {
 		driver.findElement(By.id("name")).clear();
 		driver.findElement(By.id("name")).sendKeys(name);
 		driver.findElement(By.id("last_name")).clear();
@@ -22,6 +22,7 @@ public class DoctorPage {
 		driver.findElement(By.id("identification")).clear();
 		driver.findElement(By.id("identification")).sendKeys(id);
 		driver.findElement(By.linkText("Guardar")).click();
+		Thread.sleep(2000);
 	}
 
 	public void goHome() {

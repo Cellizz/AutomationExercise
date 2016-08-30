@@ -16,19 +16,19 @@ public class ScheduleAppointmentPage {
 		this.driver = driver;
 	}
 
-	public void scheduleAppointment(String doctorId, String patientId, String date, String message) {
+	public void scheduleAppointment(String doctorId, String patientId, String date, String message) throws InterruptedException {
 		if (date != null) {
 			driver.findElement(By.id("datepicker")).clear();
 			driver.findElement(By.id("datepicker")).sendKeys(date);
 		}
-		if (doctorId != null) {
+		if (patientId != null) {
 			driver.findElement(By.xpath("(//input[@type='text'])[2]")).clear();
-			driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys(doctorId);
+			driver.findElement(By.xpath("(//input[@type='text'])[2]")).sendKeys(patientId);
 
 		}
-		if (patientId != null) {
+		if (doctorId != null) {
 			driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();
-			driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys(patientId);
+			driver.findElement(By.xpath("(//input[@type='text'])[3]")).sendKeys(doctorId);
 
 		}
 
@@ -38,6 +38,7 @@ public class ScheduleAppointmentPage {
 
 		}
 		driver.findElement(By.linkText("Guardar")).click();
+		Thread.sleep(2000);
 	}
 
 	public List<String> getErrorMessages() {

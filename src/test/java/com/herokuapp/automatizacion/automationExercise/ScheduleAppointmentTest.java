@@ -23,13 +23,13 @@ public class ScheduleAppointmentTest {
 		mainPage = new MainPage();
 	}
 
-	public void createGenericDoctor(String id) {
+	public void createGenericDoctor(String id) throws InterruptedException {
 		DoctorPage doctorPage = mainPage.getDoctorPage();
 		doctorPage.addDoctor("Doctor", "Tor", "12345678", "Cédula de ciudadanía", id);
 		doctorPage.goHome();
 	}
 
-	public void createGenericPatient(String id) {
+	public void createGenericPatient(String id) throws InterruptedException {
 		PatientPage patientPage = mainPage.getPatientPage(); 
 		patientPage.addPatient(id, "Paciente", "Ente", "12345678", "Cédula de ciudadanía", true);
 		patientPage.goHome();
@@ -168,16 +168,12 @@ public class ScheduleAppointmentTest {
 		List<String> errorMessages = scheduleAppointmentPage.getErrorMessages();
 		Assert.assertNotNull(errorMessages);
 		boolean found1 = false;
-		boolean found2 = false;
 		for (String string : errorMessages) {
-			if (string.contains("*El campo 'Documento de identidad' no se encuentra entre nuestros pacientes registrados.")) {
+			if (string.contains("*El campo 'Documento de identidad' es requerido.")) {
 				found1 = true;
 			}
-			if (string.contains("*El campo 'Documento de identidad' es requerido.")) {
-				found2 = true;
-			}
 		}
-		Assert.assertTrue(found1 && found2);
+		Assert.assertTrue(found1);
 	}
 
 	@Test
@@ -237,10 +233,10 @@ public class ScheduleAppointmentTest {
 		boolean found1 = false;
 		boolean found2 = false;
 		for (String string : errorMessages) {
-			if (string.contains("*El campo 'Documento de identidad' no se encuentra entre nuestros pacientes registrados.")) {
+			if (string.contains("*El campo 'Documento de identidad' del doctor debe ser numerico.")) {
 				found1 = true;
 			}
-			if (string.contains("*El campo 'Documento de identidad' no se encuentra entre nuestros doctores.")) {
+			if (string.contains("*El campo 'Documento de identidad' del paciente debe ser numerico.")) {
 				found2 = true;
 			}
 		}
